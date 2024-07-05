@@ -1,6 +1,9 @@
-import express from 'express';
 import { Request, Response } from 'express';
+import migrationsRun from './database/sqlite/migrations';
+import express from 'express';
 import routes from './routes';
+
+migrationsRun();
 
 const app = express();
 
