@@ -1,11 +1,8 @@
 import 'express-async-errors';
-import express from 'express';
 import { NextFunction, Request, Response } from 'express';
-import migrationsRun from './database/sqlite/migrations';
+import express from 'express';
 import AppError from './utils/AppError';
 import routes from './routes';
-
-migrationsRun();
 
 const app = express();
 
@@ -28,8 +25,5 @@ app.use((error: AppError, request: Request, response: Response, next: NextFuncti
   });
 });
 
-const PORT = 3333;
+export { app };
 
-app.listen(PORT, () =>
-  console.log(`Server is running on http://localhost:${PORT} 🚀`)
-);
