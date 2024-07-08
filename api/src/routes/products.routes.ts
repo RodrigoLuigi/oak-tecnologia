@@ -1,10 +1,9 @@
-import { Router, Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
+import { createProductController } from '../useCases/CreateProduct';
 
 const productsRoutes = Router();
 
-productsRoutes.post('/', (req: Request, res: Response) => {
-  res.send('Cadastrar produto');
-});
+productsRoutes.post('/', createProductController.handle.bind(createProductController));
 
 productsRoutes.get('/', (req: Request, res: Response) => {
   res.send('Listar produtos');
