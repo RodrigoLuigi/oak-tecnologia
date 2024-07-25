@@ -4,14 +4,14 @@ export default {
   theme: {
     extend: {
       height: {
-        'max-content': 'calc(100vh - 350px)',
+        'max-content': 'calc(100vh - 400px)',
       },
       fontFamily: {
         sans: 'Inter',
       },
       backgroundImage: {
         'oak-gradient': 'linear-gradient(to top, #98FFB8, #1C8894)',
-        'oak-gradient2': 'linear-gradient(-36deg, #98FFB8 0%, #1C8894 100%);',
+        'oak-gradient2': 'linear-gradient(36deg, #47B368 0%, #1C8894 100%);',
       },
       gridTemplateAreas: {
         layout: [
@@ -29,5 +29,8 @@ export default {
       },
     },
   },
-  plugins: [require('@savvywombat/tailwindcss-grid-areas')],
+  plugins: [
+    require('@savvywombat/tailwindcss-grid-areas'),
+    require('tailwind-scrollbar'),
+  ],
 }

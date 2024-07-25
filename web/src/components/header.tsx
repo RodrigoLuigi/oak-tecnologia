@@ -2,7 +2,7 @@ import { Github, Instagram, Linkedin } from 'lucide-react'
 
 export function Header() {
   return (
-    <header className="flex items-center bg-[#1E2326] grid-in-header px-20 border-b border-solid border-[#47B368]">
+    <header className="flex items-center bg-[#1E2326] grid-in-header px-24 border-b border-solid border-[#47B368]">
       <div className="flex justify-center gap-4 flex-1">
         <a
           href="#"
