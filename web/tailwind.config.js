@@ -27,10 +27,17 @@ export default {
       gridTemplateRows: {
         layout: '105px 128px auto 80px',
       },
+      colors: {
+        customGreen: '#47B368',
+        customDark: '#1E2326',
+        customDarker: '#20272A',
+        customGray: '#596a7466',
+      },
     },
   },
   plugins: [
     require('@savvywombat/tailwindcss-grid-areas'),
     require('tailwind-scrollbar'),
+    require('flowbite/plugin'),
   ],
 }
