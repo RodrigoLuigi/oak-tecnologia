@@ -135,7 +135,7 @@ export function Home() {
       <Header />
 
       <aside className="grid-in-menu bg-[#20272A] relative ">
-        <img src="../public/bg-detail.png" alt="" className="absolute h-full" />
+        <img src="bg-detail.png" alt="" className="absolute h-full" />
 
         <FilterOptionsMenu
           filterSelectedValue={filterSelectedValue}
