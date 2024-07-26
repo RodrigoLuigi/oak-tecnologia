@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { Brand } from '../../components/brand'
 import { Header } from '../../components/header'
+import { SearchProductInput } from './components/search-product-input'
 import { ProductListContent } from './components/product-list-content'
 import { NewProductButton } from './components/new-product-button'
 import {
   FilterOptionsMenu,
   type FilterOptionsProps,
 } from './components/filter-options-menu'
-import { SearchProductInput } from './components/search-product-input'
 
 interface ProductProps {
   id: number
