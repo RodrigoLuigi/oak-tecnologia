@@ -32,13 +32,13 @@ export function ProductListContent({ products }: ProductContentListProps) {
             key={product.id}
             className={index % 2 === 0 ? 'bg-customDark' : 'bg-customDarker'}
           >
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-customGreen">
+            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-200">
               {product.id}
             </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-customGreen">
+            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-green-200">
               {product.name}
             </td>
-            <td className="px-6 py-4 whitespace-nowrap text-sm text-customGreen">
+            <td className="px-6 py-4 whitespace-nowrap text-sm text-green-200">
               R$ {product.price.toFixed(2).replace('.', ',')}
             </td>
             <td className="px-6 py-4 whitespace-nowrap text-sm text-blue-400">
