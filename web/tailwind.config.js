@@ -20,12 +20,14 @@ export default {
           'menu content',
           'newProduct content',
         ],
+        layout2: ['brand header', 'content content'],
       },
       gridTemplateColumns: {
         layout: '250px auto',
       },
       gridTemplateRows: {
         layout: '105px 128px auto 80px',
+        layout2: '105px auto',
       },
       colors: {
         customGreen: '#47B368',
