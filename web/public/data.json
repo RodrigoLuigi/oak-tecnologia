@@ -1,0 +1,99 @@
+[
+
+  {
+    "id": 1,
+    "name": "POCOPHONE F1",
+    "description":
+      "Este modelo é para quem busca desempenho de aparelho top de linha, mas sem ter que pagar uma fortuna. Mas não é por isso que ele vai decepcionar e entregar uma qualidade de construção ruim.",
+    "price": 1398.99,
+    "avaliable": true
+  },
+  {
+    "id": 2,
+    "name": "SAMSUNG A20",
+    "description":
+      "O Samsung Galaxy A20 é um smartphone Android completo, que não tem muito a invejar aos mais avançados dispositivos. Surpreendente é sua tela Touchscreen de 6.4 polegadas, que coloca esse Samsung no topo de sua categoria. ",
+    "price": 1998.99,
+    "avaliable": true
+  },
+  {
+    "id": 3,
+    "name": "APPLE IPHONE15",
+    "description":
+      "O Apple iPhone 15 é um smartphone iOS com características inovadoras que o tornam uma excelente opção para qualquer tipo de utilização, representando um dos melhores dispositivos móveis já feitos.",
+    "price": 498.99,
+    "avaliable": true
+  },
+  {
+    "id": 4,
+    "name": "HUAWEI P30 ",
+    "description":
+      "O Huawei P30 é um smartphone Android avançado e abrangente em todos os pontos de vista com algumas características excelentes. Tem uma grande tela de 6.1 polegadas com uma resolução de 2340x1080 pixels.",
+    "price": 2498.99,
+    "avaliable": true
+  },
+  {
+    "id": 5,
+    "name": "POCOPHONE F1",
+    "description":
+      "Este modelo é para quem busca desempenho de aparelho top de linha, mas sem ter que pagar uma fortuna. Mas não é por isso que ele vai decepcionar e entregar uma qualidade de construção ruim.",
+    "price": 3498.99,
+    "avaliable": true
+  },
+  {
+    "id": 6,
+    "name": "SAMSUNG A20",
+    "description":
+      "O Samsung Galaxy A20 é um smartphone Android completo, que não tem muito a invejar aos mais avançados dispositivos. Surpreendente é sua tela Touchscreen de 6.4 polegadas, que coloca esse Samsung no topo de sua categoria. ",
+    "price": 98.99,
+    "avaliable": true
+  },
+  {
+    "id": 7,
+    "name": "APPLE IPHONE15",
+    "description":
+      "O Apple iPhone 15 é um smartphone iOS com características inovadoras que o tornam uma excelente opção para qualquer tipo de utilização, representando um dos melhores dispositivos móveis já feitos.",
+    "price": 498.99,
+    "avaliable": true
+  },
+  {
+    "id": 8,
+    "name": "HUAWEI P30 ",
+    "description":
+      "O Huawei P30 é um smartphone Android avançado e abrangente em todos os pontos de vista com algumas características excelentes. Tem uma grande tela de 6.1 polegadas com uma resolução de 2340x1080 pixels.",
+    "price": 1498.99,
+    "avaliable": true
+  },
+  {
+    "id": 9,
+    "name": "POCOPHONE F1",
+    "description":
+      "Este modelo é para quem busca desempenho de aparelho top de linha, mas sem ter que pagar uma fortuna. Mas não é por isso que ele vai decepcionar e entregar uma qualidade de construção ruim.",
+    "price": 1498.99,
+    "avaliable": true
+  },
+  {
+    "id": 10,
+    "name": "SAMSUNG A20",
+    "description":
+      "O Samsung Galaxy A20 é um smartphone Android completo, que não tem muito a invejar aos mais avançados dispositivos. Surpreendente é sua tela Touchscreen de 6.4 polegadas, que coloca esse Samsung no topo de sua categoria. ",
+    "price": 1498.99,
+    "avaliable": true
+  },
+  {
+    "id": 11,
+    "name": "APPLE IPHONE15",
+    "description":
+      "O Apple iPhone 15 é um smartphone iOS com características inovadoras que o tornam uma excelente opção para qualquer tipo de utilização, representando um dos melhores dispositivos móveis já feitos.",
+    "price": 1498.99,
+    "avaliable": true
+  },
+  {
+    "id": 12,
+    "name": "HUAWEI P30 ",
+    "description":
+      "O Huawei P30 é um smartphone Android avançado e abrangente em todos os pontos de vista com algumas características excelentes. Tem uma grande tela de 6.1 polegadas com uma resolução de 2340x1080 pixels.",
+    "price": 1498.99,
+    "avaliable": true
+  }
+]
