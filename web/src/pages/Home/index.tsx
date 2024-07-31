@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import bgDetail from '../../assets/bg-detail.png'
 import { Brand } from '../../components/brand'
 import { Header } from '../../components/header'
@@ -9,6 +9,7 @@ import {
   FilterOptionsMenu,
   type FilterOptionsProps,
 } from './components/filter-options-menu'
+import { NewProductModal } from './new-product-modal'
 
 interface ProductProps {
   id: number
@@ -27,6 +28,31 @@ export function Home() {
     })
   const [filteredProducts, setFilteredProducts] =
     useState<ProductProps[]>(products)
+
+  const [isNewProductModalOpen, setIsNewProductModalOpen] = useState(false)
+  const [productName, setProductName] = useState('')
+  const [productDescription, setProductDescription] = useState('')
+  const [productPrice, setProductPrice] = useState('')
+  const [productAvaliable, setProductAvaliable] = useState<boolean>(false)
+
+  function openNewProductModal() {
+    setIsNewProductModalOpen(true)
+  }
+
+  function closeNewProductModal() {
+    setIsNewProductModalOpen(false)
+  }
+
+  function handleCreateNewProduct(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    console.log({
+      productName,
+      productDescription,
+      productPrice: Number(productPrice),
+      productAvaliable,
+    })
+  }
 
   useEffect(() => {
     function getFilteredProducts() {
@@ -50,36 +76,51 @@ export function Home() {
   }, [])
 
   return (
-    <div className="w-full h-screen grid grid-cols-layout grid-rows-layout grid-areas-layout">
-      <Brand />
+    <>
+      <div
+        className={`w-full h-screen grid grid-cols-layout grid-rows-layout grid-areas-layout transition ease-linear duration-200 ${isNewProductModalOpen ? 'blur-sm' : ''}`}
+      >
+        <Brand />
 
-      <Header />
+        <Header />
 
-      <aside className="grid-in-menu bg-[#20272A] relative ">
-        <img src={bgDetail} alt="" className="absolute h-full" />
+        <aside className="grid-in-menu bg-[#20272A] relative ">
+          <img src={bgDetail} alt="" className="absolute h-full" />
 
-        <FilterOptionsMenu
-          filterSelectedValue={filterSelectedValue}
-          setFilterSelectedValue={setFilterSelectedValue}
+          <FilterOptionsMenu
+            filterSelectedValue={filterSelectedValue}
+            setFilterSelectedValue={setFilterSelectedValue}
+          />
+        </aside>
+
+        <div className="grid-in-search pt-16 px-24">
+          <SearchProductInput />
+        </div>
+
+        <div className="grid-in-content px-24 pt-4 space-y-6 ">
+          <div className="space-y-4">
+            <h2 className="text-xl">Produtos</h2>
+            <div className="h-px w-full bg-[#47B368]" />
+          </div>
+
+          <div className="h-max-content overflow-y-scroll scrollbar-thin scrollbar-thin-rounded-full scrollbar-thumb-[#47b368] scrollbar-track-[#20272A] pr-4">
+            <ProductListContent products={filteredProducts} />
+          </div>
+        </div>
+
+        <NewProductButton onClick={openNewProductModal} />
+      </div>
+
+      {isNewProductModalOpen && (
+        <NewProductModal
+          closeNewProductModal={closeNewProductModal}
+          setProductName={setProductName}
+          setProductDescription={setProductDescription}
+          setProductPrice={setProductPrice}
+          setProductAvaliable={setProductAvaliable}
+          handleCreateNewProduct={handleCreateNewProduct}
         />
-      </aside>
-
-      <div className="grid-in-search pt-16 px-24">
-        <SearchProductInput />
-      </div>
-
-      <div className="grid-in-content px-24 pt-4 space-y-6 ">
-        <div className="flex flex-col gap-4">
-          <h2 className="text-xl">Produtos</h2>
-          <div className="h-px w-full bg-[#47B368]" />
-        </div>
-
-        <div className="h-max-content overflow-y-scroll scrollbar-thin scrollbar-thin-rounded-full scrollbar-thumb-[#47b368] scrollbar-track-[#20272A] pr-4">
-          <ProductListContent products={filteredProducts} />
-        </div>
-      </div>
-
-      <NewProductButton />
-    </div>
+      )}
+    </>
   )
 }
