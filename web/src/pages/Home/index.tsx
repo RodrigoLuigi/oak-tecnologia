@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import bgDetail from '../../assets/bg-detail.png'
 import { Brand } from '../../components/brand'
 import { Header } from '../../components/header'
 import { SearchProductInput } from './components/search-product-input'
@@ -57,7 +58,7 @@ export function Home() {
       <Header />
 
       <aside className="grid-in-menu bg-[#20272A] relative ">
-        <img src="bg-detail.png" alt="" className="absolute h-full" />
+        <img src={bgDetail} alt="" className="absolute h-full" />
 
         <FilterOptionsMenu
           filterSelectedValue={filterSelectedValue}
