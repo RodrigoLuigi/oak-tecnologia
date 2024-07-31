@@ -18,12 +18,11 @@ export function FilterOptionsMenu({
   function handleSelectedFilter(event: FormEvent<HTMLInputElement>) {
     const { name, checked } = event.currentTarget
 
-    setFilterSelectedValue((prevState) => ({
-      ...prevState,
+    setFilterSelectedValue({
       all: name === 'all' ? checked : false,
       'lowest-price': name === 'lowest-price' ? checked : false,
       'biggest-price': name === 'biggest-price' ? checked : false,
-    }))
+    })
   }
   return (
     <div className="px-10 pt-16 space-y-6 relative">

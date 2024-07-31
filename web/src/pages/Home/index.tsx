@@ -18,15 +18,13 @@ interface ProductProps {
 }
 
 export function Home() {
+  const [products, setProducts] = useState<ProductProps[]>([])
   const [filterSelectedValue, setFilterSelectedValue] =
     useState<FilterOptionsProps>({
       all: true,
       'lowest-price': false,
       'biggest-price': false,
     })
-
-  const [products, setProducts] = useState<ProductProps[]>([])
-
   const [filteredProducts, setFilteredProducts] =
     useState<ProductProps[]>(products)
 
