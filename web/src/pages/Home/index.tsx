@@ -29,17 +29,17 @@ export function Home() {
   const [filteredProducts, setFilteredProducts] =
     useState<ProductProps[]>(products)
 
-  function getFilteredProducts() {
-    if (filterSelectedValue['lowest-price']) {
-      return products.slice().sort((a, b) => a.price - b.price)
-    } else if (filterSelectedValue['biggest-price']) {
-      return products.slice().sort((a, b) => b.price - a.price)
-    } else {
-      return products
-    }
-  }
-
   useEffect(() => {
+    function getFilteredProducts() {
+      if (filterSelectedValue['lowest-price']) {
+        return products.slice().sort((a, b) => a.price - b.price)
+      } else if (filterSelectedValue['biggest-price']) {
+        return products.slice().sort((a, b) => b.price - a.price)
+      } else {
+        return products
+      }
+    }
+
     setFilteredProducts(getFilteredProducts())
   }, [filterSelectedValue, products])
 
