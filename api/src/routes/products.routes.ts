@@ -1,13 +1,14 @@
 import { Request, Response, Router } from 'express';
 import { createProductController } from '../useCases/CreateProduct';
+import { indexProductsController } from '../useCases/IndexProducts';
+
+
 
 const productsRoutes = Router();
 
 productsRoutes.post('/', createProductController.handle.bind(createProductController));
 
-productsRoutes.get('/', (req: Request, res: Response) => {
-  res.send('Listar produtos');
-});
+productsRoutes.get('/', indexProductsController.handle.bind(indexProductsController));
 
 productsRoutes.get('/:id', (req: Request, res: Response) => {
   res.send('Listar produto pelo id');
