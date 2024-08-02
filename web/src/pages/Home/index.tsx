@@ -1,4 +1,5 @@
 import { useEffect, useState, type FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import bgDetail from '../../assets/bg-detail.png'
 import { Brand } from '../../components/brand'
 import { Header } from '../../components/header'
@@ -22,20 +23,22 @@ interface ProductProps {
 export function Home() {
   const [products, setProducts] = useState<ProductProps[]>([])
   const [search, setSearch] = useState('')
+  const [isNewProductModalOpen, setIsNewProductModalOpen] = useState(false)
+  const [productName, setProductName] = useState('')
+  const [productDescription, setProductDescription] = useState('')
+  const [productPrice, setProductPrice] = useState('')
+  const [productAvaliable, setProductAvaliable] = useState<boolean>(false)
   const [filterSelectedValue, setFilterSelectedValue] =
     useState<FilterOptionsProps>({
       all: true,
       'lowest-price': false,
       'biggest-price': false,
     })
+
+  const navigate = useNavigate()
+
   const [filteredProducts, setFilteredProducts] =
     useState<ProductProps[]>(products)
-
-  const [isNewProductModalOpen, setIsNewProductModalOpen] = useState(false)
-  const [productName, setProductName] = useState('')
-  const [productDescription, setProductDescription] = useState('')
-  const [productPrice, setProductPrice] = useState('')
-  const [productAvaliable, setProductAvaliable] = useState<boolean>(false)
 
   function openNewProductModal() {
     setIsNewProductModalOpen(true)
@@ -45,15 +48,30 @@ export function Home() {
     setIsNewProductModalOpen(false)
   }
 
-  function handleCreateNewProduct(event: FormEvent<HTMLFormElement>) {
+  async function handleCreateNewProduct(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    console.log({
-      productName,
-      productDescription,
-      productPrice: Number(productPrice),
-      productAvaliable,
-    })
+    const newProduct = {
+      name: productName,
+      description: productDescription,
+      price: Number(productPrice),
+      available: productAvaliable,
+    }
+
+    await api
+      .post('/products', newProduct)
+      .then(() => {
+        alert('Produto cadastrado com sucesso!')
+        window.location.reload()
+        navigate('/')
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.message)
+        } else {
+          alert('Não foi possível cadastrar')
+        }
+      })
   }
 
   useEffect(() => {
