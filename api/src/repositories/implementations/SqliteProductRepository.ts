@@ -4,12 +4,12 @@ import { IProductRepository } from '../IProductRepository';
 
 export class SqliteProductRepository implements IProductRepository {
   async findByName(name: string): Promise<Product> {
-    const product = await knex('product').where({ name }).first();
+    const product = await knex('products').where({ name }).first();
 
     return product;
   }
 
   async save(product: Product): Promise<void> {
-    await knex('product').insert(product);
+    await knex('products').insert(product);
   }
 }
