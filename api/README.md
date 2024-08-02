@@ -8,11 +8,16 @@
 7 - criar repository ✅
 6 - instalar e configurar knex ✅
 
--------------------------------
+---
 
 1 - criar arquivo AppError ✅
 2 - fazer tratamento de erro do servidor ✅
 3 - revisar configuração SQLite ✅
 4 - revisar migration ✅
-5 -
+5 - criar products seeders
 
+---
+
+1 - feat: criar index products
+2 - feat: criar showProduct
+3 - feat: criar editProduct
