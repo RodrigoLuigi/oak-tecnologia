@@ -10,6 +10,7 @@ import {
   type FilterOptionsProps,
 } from './components/filter-options-menu'
 import { NewProductModal } from './new-product-modal'
+import { api } from '../../services/api'
 
 interface ProductProps {
   id: number
@@ -20,6 +21,7 @@ interface ProductProps {
 
 export function Home() {
   const [products, setProducts] = useState<ProductProps[]>([])
+  const [search, setSearch] = useState('')
   const [filterSelectedValue, setFilterSelectedValue] =
     useState<FilterOptionsProps>({
       all: true,
@@ -69,11 +71,17 @@ export function Home() {
   }, [filterSelectedValue, products])
 
   useEffect(() => {
-    fetch('/data.json')
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error('Error loading data:', error))
-  }, [])
+    async function fetchProducts() {
+      try {
+        const response = await api.get(`/products?name=${search}`)
+        setProducts(response.data)
+      } catch (error) {
+        console.error('Error fetching products:', error)
+      }
+    }
+
+    fetchProducts()
+  }, [search])
 
   return (
     <>
@@ -94,7 +102,7 @@ export function Home() {
         </aside>
 
         <div className="grid-in-search pt-16 px-24">
-          <SearchProductInput />
+          <SearchProductInput setSearch={setSearch} />
         </div>
 
         <div className="grid-in-content px-24 pt-4 space-y-6 ">
