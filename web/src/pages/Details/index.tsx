@@ -1,14 +1,57 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { ArrowLeft } from 'lucide-react'
+import { AxiosError } from 'axios'
+import { api } from '../../services/api'
+import bgDetail from '../../assets/bg-detail.png'
 import { Brand } from '../../components/brand'
 import { Header } from '../../components/header'
-import { ArrowLeft } from 'lucide-react'
+
+interface ProductProps {
+  id: number
+  name: string
+  description: string
+  price: number
+  available: boolean
+}
 
 export function Details() {
+  const { id } = useParams()
+  const [isLoading, setIsLoading] = useState(true)
+  const [productData, setProductData] = useState<ProductProps | null>(null)
+
   const navigate = useNavigate()
 
-  function handleNavigate() {
-    navigate('/')
+  function handleBack() {
+    navigate(-1)
   }
+
+  useEffect(() => {
+    async function fetchProduct() {
+      setIsLoading(true)
+      try {
+        const response = await api.get(`/products/${id}`)
+        const data = {
+          ...response.data,
+          available: response.data.available === '1',
+        }
+        setProductData(data)
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          alert(error.response?.data.message)
+        } else {
+          alert('Não foi possível carregar os dados do produto.')
+        }
+      } finally {
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 500)
+      }
+    }
+
+    fetchProduct()
+  }, [id])
+
   return (
     <div className="w-full h-screen grid grid-cols-layout grid-rows-layout2 grid-areas-layout2">
       <Brand />
@@ -16,47 +59,40 @@ export function Details() {
       <Header />
 
       <div className="grid-in-content  relative">
-        <img src="/bg-detail.png" alt="" className="absolute h-full" />
-        <div className="flex flex-col gap-16 py-16  max-w-[550px] mx-auto">
-          <button
-            onClick={handleNavigate}
-            className="self-end flex gap-1 text-customGreen hover:text-green-300"
-          >
-            <ArrowLeft /> Voltar
-          </button>
-
-          <div className="space-y-6">
-            <h2 className="text-4xl">POCOPHONE F1</h2>
-            <div className="h-px w-full bg-customGreen" />
-            <p className="text-green-200">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industrys standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book. It has
-              survived not only five centuries, but also the leap into
-              electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets
-              containing Lorem Ipsum passages, and more recently with desktop
-              publishing software like Aldus PageMaker including versions of
-              Lorem Ipsum.
-            </p>
-            <div className="flex items-center justify-between">
-              <span className="p-3 bg-[#18181B] rounded-md font-bold text-sm text-green-500">
-                R$1499,99
-              </span>
-              <strong className="flex gap-2.5 text-gray-500">
-                Disponível para venda:{' '}
-                <span className="flex items-center gap-1.5 text-[#26ff12]">
-                  <div className="w-2 h-2 rounded-full bg-[#26ff12]" />
-                  sim
-                </span>{' '}
-              </strong>
-            </div>
-            <button className="w-full h-20 bg-green-600 rounded-xl text-xl font-medium transition hover:bg-green-500">
-              Editar
-            </button>
+        <img src={bgDetail} alt="" className="absolute h-full" />
+        {isLoading ? (
+          <div className="flex items-center justify-center h-full w-full overflow-hidden">
+            <h1>LOADING</h1>
           </div>
-        </div>
+        ) : (
+          <div className="flex flex-col gap-16 py-16  max-w-[550px] mx-auto">
+            <button
+              onClick={handleBack}
+              className="self-end flex gap-1 text-customGreen hover:text-green-300 hover:gap-2 transition-all duration-300"
+            >
+              <ArrowLeft /> Voltar
+            </button>
+
+            <div className="space-y-6">
+              <h2 className="text-4xl">{productData?.name}</h2>
+              <div className="h-px w-full bg-customGreen" />
+              <p className="text-green-200">{productData?.description}</p>
+              <div className="flex items-center justify-between">
+                <span className="p-3 rounded-md bg-customDarker ring-1 ring-green-500 text-white font-bold text-sm">
+                  R$ {productData?.price.toFixed(2).replace('.', ',')}
+                </span>
+                <strong
+                  className={`${productData?.available ? 'text-[#26ff12]' : 'text-red-500'}`}
+                >
+                  {productData?.available ? 'Disponível' : 'Indisponível'}
+                </strong>
+              </div>
+              <button className="w-full h-20 bg-green-600 rounded-xl text-xl font-medium transition hover:bg-green-500">
+                Editar
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
