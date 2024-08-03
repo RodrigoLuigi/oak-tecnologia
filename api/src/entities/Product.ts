@@ -6,10 +6,10 @@ interface ProductProps {
 }
 
 export class Product {
-  private name: string;
-  private description: string;
-  private price: number;
-  private available: boolean;
+  public name: string;
+  public description: string;
+  public price: number;
+  public available: boolean;
 
   public constructor(props: ProductProps){
     this.name = props.name;
