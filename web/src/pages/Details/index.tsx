@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, PenLine } from 'lucide-react'
 import { AxiosError } from 'axios'
 import { api } from '../../services/api'
 import bgDetail from '../../assets/bg-detail.png'
@@ -73,12 +73,16 @@ export function Details() {
               <ArrowLeft /> Voltar
             </button>
 
-            <div className="space-y-6">
-              <h2 className="text-4xl">{productData?.name}</h2>
-              <div className="h-px w-full bg-customGreen" />
+            <div className="space-y-8">
+              <div className="space-y-4">
+                <h2 className="text-4xl">{productData?.name}</h2>
+                <div className="h-px w-full bg-customGreen" />
+              </div>
+
               <p className="text-green-200">{productData?.description}</p>
+
               <div className="flex items-center justify-between">
-                <span className="p-3 rounded-md bg-customDarker ring-1 ring-green-500 text-white font-bold text-sm">
+                <span className="p-3 rounded-md bg-customDarker ring-2 ring-green-500 font-bold text-sm">
                   R$ {productData?.price.toFixed(2).replace('.', ',')}
                 </span>
                 <strong
@@ -87,9 +91,16 @@ export function Details() {
                   {productData?.available ? 'Disponível' : 'Indisponível'}
                 </strong>
               </div>
-              <button className="w-full h-20 bg-green-600 rounded-xl text-xl font-medium transition hover:bg-green-500">
-                Editar
-              </button>
+
+              <div className="flex items-center gap-4">
+                <button className="flex items-center justify-center gap-4 flex-1 px-6 py-4 bg-green-600 rounded-xl text-xl font-medium transition hover:bg-green-500">
+                  <PenLine />
+                  Editar produto
+                </button>
+                <button className="px-6 py-4 bg-red-400 rounded-xl text-xl font-medium transition hover:bg-red-500">
+                  Excluir
+                </button>
+              </div>
             </div>
           </div>
         )}
