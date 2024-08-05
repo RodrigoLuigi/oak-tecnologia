@@ -1,24 +1,45 @@
 import { X } from 'lucide-react'
-import type { FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
 import { NumericFormat } from 'react-number-format'
+import { api } from '../../services/api'
 
 interface NewProductModalProps {
   closeNewProductModal: () => void
-  setProductName: (name: string) => void
-  setProductDescription: (description: string) => void
-  setProductPrice: (price: string) => void
-  setProductAvailable: (avaliable: boolean) => void
-  handleCreateNewProduct: (event: FormEvent<HTMLFormElement>) => void
 }
 
 export function NewProductModal({
   closeNewProductModal,
-  setProductName,
-  setProductDescription,
-  setProductPrice,
-  setProductAvailable,
-  handleCreateNewProduct,
 }: NewProductModalProps) {
+  const [productName, setProductName] = useState('')
+  const [productDescription, setProductDescription] = useState('')
+  const [productPrice, setProductPrice] = useState('')
+  const [productAvailable, setProductAvailable] = useState(false)
+
+  async function handleCreateNewProduct(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    const newProduct = {
+      name: productName,
+      description: productDescription,
+      price: Number(productPrice),
+      available: productAvailable,
+    }
+
+    await api
+      .post('/products', newProduct)
+      .then(() => {
+        alert('Produto cadastrado com sucesso!')
+        window.location.reload()
+      })
+      .catch((error) => {
+        if (error.response) {
+          alert(error.response.data.message)
+        } else {
+          alert('Não foi possível cadastrar')
+        }
+      })
+  }
+
   return (
     <div
       onClick={closeNewProductModal}

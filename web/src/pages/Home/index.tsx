@@ -1,5 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { api } from '../../services/api'
 import { AxiosError } from 'axios'
 import bgDetail from '../../assets/bg-detail.png'
@@ -26,18 +25,13 @@ export function Home() {
   const [search, setSearch] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [isNewProductModalOpen, setIsNewProductModalOpen] = useState(false)
-  const [productName, setProductName] = useState('')
-  const [productDescription, setProductDescription] = useState('')
-  const [productPrice, setProductPrice] = useState('')
-  const [productAvailable, setProductAvailable] = useState(false)
+
   const [filterSelectedValue, setFilterSelectedValue] =
     useState<FilterOptionsProps>({
       all: true,
       'lowest-price': false,
       'biggest-price': false,
     })
-
-  const navigate = useNavigate()
 
   const [filteredProducts, setFilteredProducts] =
     useState<ProductProps[]>(products)
@@ -48,32 +42,6 @@ export function Home() {
 
   function closeNewProductModal() {
     setIsNewProductModalOpen(false)
-  }
-
-  async function handleCreateNewProduct(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
-    const newProduct = {
-      name: productName,
-      description: productDescription,
-      price: Number(productPrice),
-      available: productAvailable,
-    }
-
-    await api
-      .post('/products', newProduct)
-      .then(() => {
-        alert('Produto cadastrado com sucesso!')
-        window.location.reload()
-        navigate('/')
-      })
-      .catch((error) => {
-        if (error.response) {
-          alert(error.response.data.message)
-        } else {
-          alert('Não foi possível cadastrar')
-        }
-      })
   }
 
   useEffect(() => {
@@ -131,7 +99,7 @@ export function Home() {
         </aside>
 
         <div className="grid-in-search pt-16 px-24">
-          <SearchProductInput setSearch={setSearch} />
+          <SearchProductInput search={search} setSearch={setSearch} />
         </div>
 
         <div className="grid-in-content px-24 pt-4 space-y-6 ">
@@ -155,14 +123,7 @@ export function Home() {
       </div>
 
       {isNewProductModalOpen && (
-        <NewProductModal
-          closeNewProductModal={closeNewProductModal}
-          setProductName={setProductName}
-          setProductDescription={setProductDescription}
-          setProductPrice={setProductPrice}
-          setProductAvailable={setProductAvailable}
-          handleCreateNewProduct={handleCreateNewProduct}
-        />
+        <NewProductModal closeNewProductModal={closeNewProductModal} />
       )}
     </>
   )
