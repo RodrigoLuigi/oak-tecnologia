@@ -7,7 +7,7 @@ interface NewProductModalProps {
   setProductName: (name: string) => void
   setProductDescription: (description: string) => void
   setProductPrice: (price: string) => void
-  setProductAvaliable: (avaliable: boolean) => void
+  setProductAvailable: (avaliable: boolean) => void
   handleCreateNewProduct: (event: FormEvent<HTMLFormElement>) => void
 }
 
@@ -16,7 +16,7 @@ export function NewProductModal({
   setProductName,
   setProductDescription,
   setProductPrice,
-  setProductAvaliable,
+  setProductAvailable,
   handleCreateNewProduct,
 }: NewProductModalProps) {
   return (
@@ -103,7 +103,7 @@ export function NewProductModal({
                 id="available"
                 name="available"
                 onChange={(event) =>
-                  setProductAvaliable(event.target.value === 'yes')
+                  setProductAvailable(event.target.value === 'yes')
                 }
                 required
               >

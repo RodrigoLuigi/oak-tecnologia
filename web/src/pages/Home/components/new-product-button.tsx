@@ -3,7 +3,7 @@ import { Plus } from 'lucide-react'
 export function NewProductButton({ ...rest }) {
   return (
     <button
-      className="grid-in-newProduct bg-green-600  flex items-center justify-center gap-2.5 font-bold transition  hover:bg-green-400 hover:text-green-900"
+      className="grid-in-newProduct bg-green-600  flex items-center justify-center gap-2.5 font-bold transition  hover:bg-green-500 disabled:brightness-50 disabled:hover:bg-green-600  disabled:hover:text-zinc-50 disabled:active:scale-100"
       {...rest}
     >
       <Plus className="size-8" />

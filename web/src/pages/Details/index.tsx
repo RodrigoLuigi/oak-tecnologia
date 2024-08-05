@@ -61,8 +61,8 @@ export function Details() {
       <div className="grid-in-content  relative">
         <img src={bgDetail} alt="" className="absolute h-full" />
         {isLoading ? (
-          <div className="flex items-center justify-center h-full w-full overflow-hidden">
-            <h1>LOADING</h1>
+          <div className="h-full w-full flex items-center justify-center">
+            <div className="w-16 h-16 border-4 border-t-transparent border-solid rounded-full animate-spin border-customGreen" />
           </div>
         ) : (
           <div className="flex flex-col gap-16 py-16  max-w-[550px] mx-auto">

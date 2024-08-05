@@ -1,5 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { api } from '../../services/api'
+import { AxiosError } from 'axios'
 import bgDetail from '../../assets/bg-detail.png'
 import { Brand } from '../../components/brand'
 import { Header } from '../../components/header'
@@ -11,7 +13,6 @@ import {
   type FilterOptionsProps,
 } from './components/filter-options-menu'
 import { NewProductModal } from './new-product-modal'
-import { api } from '../../services/api'
 
 interface ProductProps {
   id: number
@@ -23,11 +24,12 @@ interface ProductProps {
 export function Home() {
   const [products, setProducts] = useState<ProductProps[]>([])
   const [search, setSearch] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
   const [isNewProductModalOpen, setIsNewProductModalOpen] = useState(false)
   const [productName, setProductName] = useState('')
   const [productDescription, setProductDescription] = useState('')
   const [productPrice, setProductPrice] = useState('')
-  const [productAvaliable, setProductAvaliable] = useState<boolean>(false)
+  const [productAvailable, setProductAvailable] = useState(false)
   const [filterSelectedValue, setFilterSelectedValue] =
     useState<FilterOptionsProps>({
       all: true,
@@ -55,7 +57,7 @@ export function Home() {
       name: productName,
       description: productDescription,
       price: Number(productPrice),
-      available: productAvaliable,
+      available: productAvailable,
     }
 
     await api
@@ -90,11 +92,20 @@ export function Home() {
 
   useEffect(() => {
     async function fetchProducts() {
+      setIsLoading(true)
       try {
         const response = await api.get(`/products?name=${search}`)
         setProducts(response.data)
       } catch (error) {
-        console.error('Error fetching products:', error)
+        if (error instanceof AxiosError) {
+          alert(error.response?.data.message)
+        } else {
+          alert('Não foi possível carregar os produtos.')
+        }
+      } finally {
+        setTimeout(() => {
+          setIsLoading(false)
+        }, 500)
       }
     }
 
@@ -130,11 +141,17 @@ export function Home() {
           </div>
 
           <div className="h-max-content overflow-y-scroll scrollbar-thin scrollbar-thin-rounded-full scrollbar-thumb-[#47b368] scrollbar-track-[#20272A] pr-4">
-            <ProductListContent products={filteredProducts} />
+            {isLoading ? (
+              <div className="h-full w-full flex items-center justify-center">
+                <div className="w-16 h-16 border-4 border-t-transparent border-solid rounded-full animate-spin border-customGreen" />
+              </div>
+            ) : (
+              <ProductListContent products={filteredProducts} />
+            )}
           </div>
         </div>
 
-        <NewProductButton onClick={openNewProductModal} />
+        <NewProductButton onClick={openNewProductModal} disabled={isLoading} />
       </div>
 
       {isNewProductModalOpen && (
@@ -143,7 +160,7 @@ export function Home() {
           setProductName={setProductName}
           setProductDescription={setProductDescription}
           setProductPrice={setProductPrice}
-          setProductAvaliable={setProductAvaliable}
+          setProductAvailable={setProductAvailable}
           handleCreateNewProduct={handleCreateNewProduct}
         />
       )}
