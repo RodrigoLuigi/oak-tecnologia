@@ -11,7 +11,6 @@ export default {
       },
       backgroundImage: {
         'oak-gradient': 'linear-gradient(to top, #98FFB8, #1C8894)',
-        'oak-gradient2': 'linear-gradient(36deg, #47B368 0%, #1C8894 100%);',
       },
       gridTemplateAreas: {
         layout: [

@@ -121,7 +121,7 @@ export function Home() {
 
         <Header />
 
-        <aside className="grid-in-menu bg-[#20272A] relative ">
+        <aside className="grid-in-menu bg-customDarker relative ">
           <img src={bgDetail} alt="" className="absolute h-full" />
 
           <FilterOptionsMenu
@@ -137,10 +137,10 @@ export function Home() {
         <div className="grid-in-content px-24 pt-4 space-y-6 ">
           <div className="space-y-4">
             <h2 className="text-xl">Produtos</h2>
-            <div className="h-px w-full bg-[#47B368]" />
+            <div className="h-px w-full bg-customGreen" />
           </div>
 
-          <div className="h-max-content overflow-y-scroll scrollbar-thin scrollbar-thin-rounded-full scrollbar-thumb-[#47b368] scrollbar-track-[#20272A] pr-4">
+          <div className="h-max-content overflow-y-scroll scrollbar-thin scrollbar-thin-rounded-full scrollbar-thumb-customGreen scrollbar-track-customDarker pr-4">
             {isLoading ? (
               <div className="h-full w-full flex items-center justify-center">
                 <div className="w-16 h-16 border-4 border-t-transparent border-solid rounded-full animate-spin border-customGreen" />

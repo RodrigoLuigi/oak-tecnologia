@@ -34,7 +34,7 @@ export function FilterOptionsMenu({
             type="checkbox"
             name="all"
             id="all"
-            className="w-4 h-4 text-green-500 bg-gray-100 border-gray-300 rounded focus:ring-green-400 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            className="w-4 h-4 text-green-500 bg-gray-100 border-gray-300 rounded focus:ring-green-400"
             checked={filterSelectedValue.all}
             onChange={handleSelectedFilter}
           />
@@ -46,7 +46,7 @@ export function FilterOptionsMenu({
             type="checkbox"
             name="lowest-price"
             id="lowest-price"
-            className="w-4 h-4 text-green-500 bg-gray-100 border-gray-300 rounded focus:ring-green-400 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            className="w-4 h-4 text-green-500 bg-gray-100 border-gray-300 rounded focus:ring-green-400"
             checked={filterSelectedValue['lowest-price']}
             onChange={handleSelectedFilter}
           />
@@ -58,7 +58,7 @@ export function FilterOptionsMenu({
             type="checkbox"
             name="biggest-price"
             id="biggest-price"
-            className="w-4 h-4 text-green-500 bg-gray-100 border-gray-300 rounded focus:ring-green-400 dark:focus:ring-green-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            className="w-4 h-4 text-green-500 bg-gray-100 border-gray-300 rounded focus:ring-green-400"
             checked={filterSelectedValue['biggest-price']}
             onChange={handleSelectedFilter}
           />
