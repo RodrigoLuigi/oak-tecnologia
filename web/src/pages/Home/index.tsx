@@ -115,7 +115,7 @@ export function Home() {
   return (
     <>
       <div
-        className={`w-full h-screen grid grid-cols-layout grid-rows-layout grid-areas-layout transition ease-linear duration-200 ${isNewProductModalOpen ? 'blur-sm' : ''}`}
+        className={`w-full h-screen grid grid-cols-layout grid-rows-layout grid-areas-layout transition ${isNewProductModalOpen ? 'blur-sm' : ''}`}
       >
         <Brand />
 
