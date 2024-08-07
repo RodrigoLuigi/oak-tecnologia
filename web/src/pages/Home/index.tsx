@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { api } from '../../services/api'
+/* import { api } from '../../services/api' */
 import { AxiosError } from 'axios'
 import bgDetail from '../../assets/bg-detail.png'
 import { Brand } from '../../components/brand'
@@ -62,8 +62,19 @@ export function Home() {
     async function fetchProducts() {
       setIsLoading(true)
       try {
-        const response = await api.get(`/products?name=${search}`)
-        setProducts(response.data)
+        await fetch('/data.json')
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Falha ao buscar os dados')
+            }
+            return response.json()
+          })
+          .then((data) => {
+            setProducts(data)
+          })
+          .catch((error) => {
+            console.error('Erro ao carregar os produtos:', error)
+          })
       } catch (error) {
         if (error instanceof AxiosError) {
           alert(error.response?.data.message)
@@ -83,14 +94,18 @@ export function Home() {
   return (
     <>
       <div
-        className={`w-full h-screen grid grid-cols-layout grid-rows-layout grid-areas-layout transition ${isNewProductModalOpen ? 'blur-sm' : ''}`}
+        className={`w-full h-screen grid grid-cols-layoutResponsive grid-rows-layoutResponsive grid-areas-layoutResponsive transition ${isNewProductModalOpen ? 'blur-sm overflow-hidden' : ''} md:grid-cols-layout md:grid-rows-layout md:grid-areas-layout`}
       >
         <Brand />
 
         <Header />
 
-        <aside className="grid-in-menu bg-customDarker relative ">
-          <img src={bgDetail} alt="" className="absolute h-full" />
+        <aside className="grid-in-menu relative md:bg-customDarker">
+          <img
+            src={bgDetail}
+            alt=""
+            className="absolute h-full hidden md:block"
+          />
 
           <FilterOptionsMenu
             filterSelectedValue={filterSelectedValue}
@@ -98,16 +113,16 @@ export function Home() {
           />
         </aside>
 
-        <div className="grid-in-search pt-16 px-24">
+        <div className="grid-in-search pt-16 px-6 lg:px-24">
           <SearchProductInput search={search} setSearch={setSearch} />
         </div>
 
-        <div className="grid-in-content px-24 pt-4 space-y-6 ">
-          <div className="space-y-4">
+        <div className="grid-in-content px-6 space-y-6 py-10 lg:px-24">
+          <div className="flex flex-col gap-4">
             <h2 className="text-xl">Produtos</h2>
+
             <div className="h-px w-full bg-customGreen" />
           </div>
-
           <div className="h-max-content overflow-y-scroll scrollbar-thin scrollbar-thin-rounded-full scrollbar-thumb-customGreen scrollbar-track-customDarker pr-4">
             {isLoading ? (
               <div className="h-full w-full flex items-center justify-center">

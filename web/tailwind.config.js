@@ -20,19 +20,37 @@ export default {
           'newProduct content',
         ],
         layout2: ['brand header', 'content content'],
+        layoutResponsive: [
+          'brand header',
+          'search search',
+          'menu menu',
+          'content content',
+          'newProduct newProduct',
+        ],
       },
       gridTemplateColumns: {
         layout: '250px auto',
+        layoutResponsive: '176px auto',
       },
       gridTemplateRows: {
         layout: '105px 128px auto 80px',
         layout2: '105px auto',
+        layoutResponsive: 'auto',
       },
       colors: {
         customGreen: '#47B368',
         customDark: '#1E2326',
         customDarker: '#20272A',
         customGray: '#596a7466',
+      },
+      animation: {
+        showScreen: 'showScreen 1s ease-in-out forwards',
+      },
+      keyframes: {
+        showScreen: {
+          '0%': { transform: 'translateY(1000px)' },
+          '100%': { transform: 'translateY(0)' },
+        },
       },
     },
   },

@@ -26,10 +26,10 @@ export function FilterOptionsMenu({
   }
   return (
     <div className="px-10 pt-16 space-y-6 relative">
-      <h2 className="text-xl font-medium">Filtrar por:</h2>
+      <h2 className="font-medium md:text-xl">Filtrar por:</h2>
 
-      <div className="space-y-6 text-lg font-medium">
-        <label className="flex items-center gap-2.5">
+      <div className="flex items-center justify-between text-sm font-medium md:flex-col md:items-start md:gap-6 md:text-lg">
+        <label className="flex items-center gap-1 md:gap-2.5">
           <input
             type="checkbox"
             name="all"
@@ -41,7 +41,7 @@ export function FilterOptionsMenu({
           Todos
         </label>
 
-        <label className="flex items-center gap-2.5">
+        <label className="flex items-center gap-1 md:gap-2.5">
           <input
             type="checkbox"
             name="lowest-price"
@@ -53,7 +53,7 @@ export function FilterOptionsMenu({
           Menor Preço
         </label>
 
-        <label className="flex items-center gap-2.5">
+        <label className="flex items-center gap-1 md:gap-2.5">
           <input
             type="checkbox"
             name="biggest-price"
