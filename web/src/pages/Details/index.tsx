@@ -65,7 +65,7 @@ export function Details() {
             <div className="w-16 h-16 border-4 border-t-transparent border-solid rounded-full animate-spin border-customGreen" />
           </div>
         ) : (
-          <div className="flex flex-col gap-16 py-16  max-w-[550px] mx-auto px-6">
+          <div className="flex flex-col gap-16 py-16  max-w-[550px] mx-auto px-6 md:px-0">
             <button
               onClick={handleBack}
               className="self-end flex gap-1 text-customGreen hover:text-green-300 hover:gap-2 transition-all duration-300"
