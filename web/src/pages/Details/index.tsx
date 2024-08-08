@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
-import { ArrowLeft, PenLine } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { AxiosError } from 'axios'
 import { api } from '../../services/api'
 import bgDetail from '../../assets/bg-detail.png'
@@ -53,7 +53,7 @@ export function Details() {
   }, [id])
 
   return (
-    <div className="w-full h-screen grid grid-cols-layout grid-rows-layout2 grid-areas-layout2">
+    <div className="w-full h-screen grid grid-cols-1 md:grid-cols-layout grid-rows-layout2 grid-areas-layout2">
       <Brand />
 
       <Header />
@@ -65,7 +65,7 @@ export function Details() {
             <div className="w-16 h-16 border-4 border-t-transparent border-solid rounded-full animate-spin border-customGreen" />
           </div>
         ) : (
-          <div className="flex flex-col gap-16 py-16  max-w-[550px] mx-auto">
+          <div className="flex flex-col gap-16 py-16  max-w-[550px] mx-auto px-6">
             <button
               onClick={handleBack}
               className="self-end flex gap-1 text-customGreen hover:text-green-300 hover:gap-2 transition-all duration-300"
@@ -90,16 +90,6 @@ export function Details() {
                 >
                   {productData?.available ? 'Disponível' : 'Indisponível'}
                 </strong>
-              </div>
-
-              <div className="flex items-center gap-4">
-                <button className="flex items-center justify-center gap-4 flex-1 px-6 py-4 bg-green-600 rounded-xl text-xl font-medium transition hover:bg-green-500">
-                  <PenLine />
-                  Editar produto
-                </button>
-                <button className="px-6 py-4 bg-red-400 rounded-xl text-xl font-medium transition hover:bg-red-500">
-                  Excluir
-                </button>
               </div>
             </div>
           </div>
