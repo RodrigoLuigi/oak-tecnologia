@@ -1,4 +1,5 @@
 import type { IProductRepository } from '../../repositories/IProductRepository';
+import AppError from '../../utils/AppError';
 import type { IIndexProductsRequestDTO } from './IndexProductsDTO';
 
 export class IndexProductsUseCase {
@@ -10,6 +11,5 @@ export class IndexProductsUseCase {
     const products = await this.productRepository.indexWithSearchByName(name);
 
     return products;
-
   }
 }

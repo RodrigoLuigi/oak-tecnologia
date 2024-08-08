@@ -6,17 +6,11 @@ export class IndexProductsController {
     private indexProductsUseCase: IndexProductsUseCase
   ){}
   async handle(request: Request, response: Response): Promise<Response>{
-    const { name } = request.query;
+    const { name } = request.query as {name?: string};
 
-    const nameString = typeof name === 'string' ? name : undefined;
+    const products = await this.indexProductsUseCase.execute(name);
 
-    try {
-      const products = await this.indexProductsUseCase.execute(nameString);
-      return response.status(200).json(products);
-    }
-    catch (error: any) {
-      return response.status(400).json({ message: error.message || 'Unexpected error.' });
-    }
+    return response.json(products);
   }
 }
 

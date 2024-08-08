@@ -8,14 +8,9 @@ export class ShowProductController {
   async handle(request: Request, response: Response): Promise<Response>{
     const  productId  = request.params;
 
-    try {
-      const product = await this.showProductUseCase.execute(Number(productId.id));
+    const product = await this.showProductUseCase.execute(Number(productId.id));
 
-      return response.status(200).json(product);
-    }
-    catch (error: any) {
-      return response.status(400).json({ message: error.message || 'Unexpected error.' });
-    }
+    return response.json(product);
   }
 }
 

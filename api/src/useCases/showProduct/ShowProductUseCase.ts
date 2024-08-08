@@ -1,4 +1,5 @@
 import type { IProductRepository } from '../../repositories/IProductRepository';
+import AppError from '../../utils/AppError';
 import type { IShowProductRequestDTO } from './ShowProductDTO';
 
 export class ShowProductUseCase {
@@ -9,7 +10,10 @@ export class ShowProductUseCase {
   async execute(id: number): Promise<IShowProductRequestDTO>{
     const product = await this.productRepository.findById(id);
 
-    return product;
+    if(!product){
+      throw new AppError('Produto não encontrado');
+    }
 
+    return product;
   }
 }
