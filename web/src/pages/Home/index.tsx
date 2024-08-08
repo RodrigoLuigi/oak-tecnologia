@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-/* import { api } from '../../services/api' */
+import { api } from '../../services/api'
 import { AxiosError } from 'axios'
 import bgDetail from '../../assets/bg-detail.png'
 import { Brand } from '../../components/brand'
@@ -60,24 +60,15 @@ export function Home() {
 
   useEffect(() => {
     async function fetchProducts() {
-      setIsLoading(true)
       try {
-        await fetch('/data.json')
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error('Falha ao buscar os dados')
-            }
-            return response.json()
-          })
-          .then((data) => {
-            setProducts(data)
-          })
-          .catch((error) => {
-            console.error('Erro ao carregar os produtos:', error)
-          })
+        setIsLoading(true)
+        const response = await api.get(`/products?name=${search}`)
+
+        setProducts(response.data)
       } catch (error) {
         if (error instanceof AxiosError) {
           alert(error.response?.data.message)
+          setIsLoading(false)
         } else {
           alert('Não foi possível carregar os produtos.')
         }
