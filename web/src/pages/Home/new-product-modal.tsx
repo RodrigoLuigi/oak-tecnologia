@@ -47,14 +47,14 @@ export function NewProductModal({
   return (
     <div
       onClick={closeNewProductModal}
-      className="absolute top-0 left-0 h-screen w-screen bg-[#00000079] flex items-center justify-center animate-showScreen"
+      className="absolute top-0 left-0 h-screen w-screen bg-[#00000079] flex items-center justify-center overflow-hidden"
     >
       <form
         onSubmit={handleCreateNewProduct}
         onClick={(e) => e.stopPropagation()}
-        className="bg-customDarker pt-6 rounded-lg shadow-lg w-screen h-screen md:w-[500px] flex flex-col justify-between"
+        className="bg-customDarker md:rounded-lg shadow-lg w-screen h-screen md:w-[500px] md:h-auto flex flex-col justify-between animate-showScreen "
       >
-        <div className="space-y-16 p-6">
+        <div className="space-y-10 p-6 pt-14 md:p-6">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-2xl">Novo Produto</h2>
@@ -139,10 +139,16 @@ export function NewProductModal({
               </div>
             </div>
           </div>
+          <button
+            type="submit"
+            className="hidden md:block w-full py-6 rounded-lg bg-green-600 text-xl font-medium transition hover:bg-green-500 uppercase"
+          >
+            Salvar
+          </button>
         </div>
         <button
           type="submit"
-          className="w-full py-6 bg-green-600 text-xl font-medium transition hover:bg-green-500 uppercase"
+          className="md:hidden w-full py-6 bg-green-600 text-xl font-medium transition hover:bg-green-500 uppercase"
         >
           Salvar
         </button>
