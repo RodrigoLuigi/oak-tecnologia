@@ -4,6 +4,7 @@ import { api } from '../../services/api'
 import { AxiosError } from 'axios'
 import { X } from 'lucide-react'
 import type { ProductProps } from '.'
+import { toast } from 'react-toastify'
 
 interface NewProductModalProps {
   closeNewProductModal: () => void
@@ -23,8 +24,8 @@ export function NewProductModal({
 
   async function handleCreateNewProduct(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setIsLoading(true)
     try {
+      setIsLoading(true)
       const response = await api.post('/products', {
         name,
         description,
@@ -40,21 +41,24 @@ export function NewProductModal({
         available,
       }
 
-      alert('Produto cadastrado com sucesso!')
+      toast.success('Produto cadastrado com sucesso!', { theme: 'dark' })
 
       setProducts((prevState) => [...prevState, newProduct])
       closeNewProductModal()
     } catch (error) {
       if (error instanceof AxiosError) {
-        alert(error.response?.data.message)
+        toast.warning(error.response?.data.message, { theme: 'dark' })
         setIsLoading(false)
       } else {
-        alert('Não foi possível cadastrar')
+        toast.error('Não foi possível cadastrar o produto!', {
+          theme: 'dark',
+        })
+        closeNewProductModal()
       }
     } finally {
       setTimeout(() => {
         setIsLoading(false)
-      }, 500)
+      }, 800)
     }
   }
 
