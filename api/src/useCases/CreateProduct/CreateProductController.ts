@@ -14,13 +14,13 @@ export class CreateProductController {
       throw new AppError('Preencha todos os campos necessários para cadastrar um novo produto.');
     }
 
-    await this.createProductUseCase.execute({
+    const productId = await this.createProductUseCase.execute({
       name,
       description,
       price,
       available,
     });
 
-    return response.status(201).json({ message: 'Produto cadastrado com sucesso!' });
+    return response.status(201).json({id: productId, message: 'Produto cadastrado com sucesso!' });
   }
 }

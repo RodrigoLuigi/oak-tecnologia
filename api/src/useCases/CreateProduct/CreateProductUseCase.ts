@@ -8,7 +8,7 @@ export class CreateProductUseCase {
     private productRepository: IProductRepository
   ){}
 
-  async execute(data: ICreateProductRequestDTO): Promise<void>{
+  async execute(data: ICreateProductRequestDTO): Promise<number>{
     const productAlreadyExists = await this.productRepository.findByName(data.name);
 
     if(productAlreadyExists){
@@ -17,6 +17,8 @@ export class CreateProductUseCase {
 
     const product = new Product(data);
 
-    await this.productRepository.save(product);
+    const productId = await this.productRepository.save(product);
+
+    return productId;
   }
 }

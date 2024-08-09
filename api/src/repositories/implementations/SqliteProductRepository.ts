@@ -13,8 +13,9 @@ export class SqliteProductRepository implements IProductRepository {
     return product;
   }
 
-  async save(product: Product): Promise<void> {
-    await knex('products').insert(product);
+  async save(product: Product): Promise<number> {
+    const id = await knex('products').insert(product);
+    return id[0];
   }
 
   async indexWithSearchByName(name?: string){
