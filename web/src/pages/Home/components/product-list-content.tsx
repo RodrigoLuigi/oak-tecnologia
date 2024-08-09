@@ -1,9 +1,4 @@
-interface ProductProps {
-  id: number
-  name: string
-  description: string
-  price: number
-}
+import type { ProductProps } from '..'
 
 interface ProductContentListProps {
   products: ProductProps[]

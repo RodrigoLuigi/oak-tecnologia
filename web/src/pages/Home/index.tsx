@@ -13,11 +13,12 @@ import {
 } from './components/filter-options-menu'
 import { NewProductModal } from './new-product-modal'
 
-interface ProductProps {
+export interface ProductProps {
   id: number
   name: string
   description: string
   price: number
+  available: boolean
 }
 
 export function Home() {
@@ -129,7 +130,11 @@ export function Home() {
       </div>
 
       {isNewProductModalOpen && (
-        <NewProductModal closeNewProductModal={closeNewProductModal} />
+        <NewProductModal
+          closeNewProductModal={closeNewProductModal}
+          setProducts={setProducts}
+          setIsLoading={setIsLoading}
+        />
       )}
     </>
   )

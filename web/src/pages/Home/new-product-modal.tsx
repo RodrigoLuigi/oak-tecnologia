@@ -1,43 +1,61 @@
-import { X } from 'lucide-react'
 import { useEffect, useState, type FormEvent } from 'react'
 import { NumericFormat } from 'react-number-format'
 import { api } from '../../services/api'
+import { AxiosError } from 'axios'
+import { X } from 'lucide-react'
+import type { ProductProps } from '.'
 
 interface NewProductModalProps {
   closeNewProductModal: () => void
+  setProducts: React.Dispatch<React.SetStateAction<ProductProps[]>>
+  setIsLoading: (isLoading: boolean) => void
 }
 
 export function NewProductModal({
   closeNewProductModal,
+  setProducts,
+  setIsLoading,
 }: NewProductModalProps) {
-  const [productName, setProductName] = useState('')
-  const [productDescription, setProductDescription] = useState('')
-  const [productPrice, setProductPrice] = useState('')
-  const [productAvailable, setProductAvailable] = useState(false)
+  const [name, setName] = useState('')
+  const [description, setDescription] = useState('')
+  const [price, setPrice] = useState('')
+  const [available, setAvailable] = useState(false)
 
   async function handleCreateNewProduct(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    setIsLoading(true)
+    try {
+      const response = await api.post('/products', {
+        name,
+        description,
+        price: Number(price),
+        available,
+      })
 
-    const newProduct = {
-      name: productName,
-      description: productDescription,
-      price: Number(productPrice),
-      available: productAvailable,
+      const newProduct: ProductProps = {
+        id: response.data.id,
+        name,
+        description,
+        price: Number(price),
+        available,
+      }
+
+      alert('Produto cadastrado com sucesso!')
+
+      setProducts((prevState) => [...prevState, newProduct])
+      closeNewProductModal()
+    } catch (error) {
+      if (error instanceof AxiosError) {
+        alert(error.response?.data.message)
+        setIsLoading(false)
+      } else {
+        alert('Não foi possível cadastrar')
+      }
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false)
+      }, 500)
     }
-
-    await api
-      .post('/products', newProduct)
-      .then(() => {
-        alert('Produto cadastrado com sucesso!')
-        window.location.reload()
-      })
-      .catch((error) => {
-        if (error.response) {
-          alert(error.response.data.message)
-        } else {
-          alert('Não foi possível cadastrar')
-        }
-      })
   }
 
   useEffect(() => {
@@ -52,7 +70,7 @@ export function NewProductModal({
       <form
         onSubmit={handleCreateNewProduct}
         onClick={(e) => e.stopPropagation()}
-        className="bg-customDarker md:rounded-lg shadow-lg w-screen h-screen md:w-[500px] md:h-auto flex flex-col justify-between animate-showScreen "
+        className="bg-customDarker md:rounded-lg shadow-lg w-screen h-screen md:w-[500px] md:h-auto flex flex-col justify-between animate-showScreen"
       >
         <div className="space-y-10 p-6 pt-14 md:p-6">
           <div className="space-y-4">
@@ -81,7 +99,7 @@ export function NewProductModal({
                 type="text"
                 id="name"
                 name="name"
-                onChange={(event) => setProductName(event.target.value)}
+                onChange={(event) => setName(event.target.value)}
                 required
               />
             </div>
@@ -94,7 +112,7 @@ export function NewProductModal({
                 className="w-full h-28 p-2 rounded-lg bg-customDark text-white resize-none focus:ring-green-500 focus:ring-2 focus:border-transparent"
                 id="description"
                 name="description"
-                onChange={(event) => setProductDescription(event.target.value)}
+                onChange={(event) => setDescription(event.target.value)}
                 required
               />
             </div>
@@ -107,7 +125,7 @@ export function NewProductModal({
                 <NumericFormat
                   className="w-full p-2 rounded-lg bg-customDark text-white outline-none focus:ring-green-500 focus:ring-2 focus:border-transparent"
                   id="price"
-                  onValueChange={(values) => setProductPrice(values.value)}
+                  onValueChange={(values) => setPrice(values.value)}
                   allowLeadingZeros={false}
                   allowNegative={false}
                   decimalScale={2}
@@ -129,7 +147,7 @@ export function NewProductModal({
                   id="available"
                   name="available"
                   onChange={(event) =>
-                    setProductAvailable(event.target.value === 'yes')
+                    setAvailable(event.target.value === 'yes')
                   }
                   required
                 >
