@@ -12,7 +12,7 @@ export class CreateProductUseCase {
     const productAlreadyExists = await this.productRepository.findByName(data.name);
 
     if(productAlreadyExists){
-      throw new AppError('Este produto já existe.', 200);
+      throw new AppError('Este produto já existe.');
     }
 
     const product = new Product(data);
