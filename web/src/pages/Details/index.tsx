@@ -6,6 +6,7 @@ import { api } from '../../services/api'
 import bgDetail from '../../assets/bg-detail.png'
 import { Brand } from '../../components/brand'
 import { Header } from '../../components/header'
+import { toast } from 'react-toastify'
 
 interface ProductProps {
   id: number
@@ -28,8 +29,8 @@ export function Details() {
 
   useEffect(() => {
     async function fetchProduct() {
-      setIsLoading(true)
       try {
+        setIsLoading(true)
         const response = await api.get(`/products/${id}`)
         const data = {
           ...response.data,
@@ -38,9 +39,12 @@ export function Details() {
         setProductData(data)
       } catch (error) {
         if (error instanceof AxiosError) {
-          alert(error.response?.data.message)
+          toast.warning(error.response?.data.message, { theme: 'dark' })
+          setIsLoading(false)
         } else {
-          alert('Não foi possível carregar os dados do produto.')
+          toast.error('Não foi possível carregar os dados do produto.', {
+            theme: 'dark',
+          })
         }
       } finally {
         setTimeout(() => {

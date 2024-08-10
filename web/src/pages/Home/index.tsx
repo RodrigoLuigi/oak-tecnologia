@@ -13,6 +13,7 @@ import {
   type FilterOptionsProps,
 } from './components/filter-options-menu'
 import { NewProductModal } from './new-product-modal'
+import { toast } from 'react-toastify'
 
 export interface ProductProps {
   id: number
@@ -69,10 +70,12 @@ export function Home() {
         setProducts(response.data)
       } catch (error) {
         if (error instanceof AxiosError) {
-          alert(error.response?.data.message)
+          toast.warning(error.response?.data.message, { theme: 'dark' })
           setIsLoading(false)
         } else {
-          alert('Não foi possível carregar os produtos.')
+          toast.error('Não foi possível carregar os produtos.', {
+            theme: 'dark',
+          })
         }
       } finally {
         setTimeout(() => {
