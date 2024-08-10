@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { ClipboardList } from 'lucide-react'
 import { api } from '../../services/api'
 import { AxiosError } from 'axios'
 import bgDetail from '../../assets/bg-detail.png'
@@ -120,8 +121,13 @@ export function Home() {
               <div className="h-full w-full flex items-center justify-center">
                 <div className="w-16 h-16 border-4 border-t-transparent border-solid rounded-full animate-spin border-customGreen" />
               </div>
-            ) : (
+            ) : products.length > 0 ? (
               <ProductListContent products={filteredProducts} />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center gap-8 text-[#4e4e4e]">
+                <ClipboardList className="size-28" />
+                <span className="">Não existem produtos cadastrados</span>
+              </div>
             )}
           </div>
         </div>
