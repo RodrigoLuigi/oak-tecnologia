@@ -1,6 +1,4 @@
-import config from '../../../knexfile';
+import { config } from './knexfile';
 import knex from 'knex';
 
-const connection = knex(config.development);
-
-export default connection;
+export const connection = knex(config.development);
