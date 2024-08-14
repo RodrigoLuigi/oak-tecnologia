@@ -14,15 +14,12 @@
 ## Screenshots
 
 <div align="center">
-  <img src="" width="270px" height="200px">
-  <img src="" width="270px" height="200px">
-  <img src="" width="270px" height="200px">
-  <img src="" width="270px" height="200px">
-  <img src="" width="270px" height="200px">
-  <img src="" width="270px" height="200px">
-  <img src="" width="270px" height="200px">
-  <img src="" width="270px" height="200px">
-  <img src="" width="270px" height="200px">
+  <img src="oak-tecnologia-1.png" width="270px" height="200px">
+  <img src="oak-tecnologia-2.png" width="270px" height="200px">
+  <img src="oak-tecnologia-3.png" width="270px" height="200px">
+  <img src="oak-tecnologia-4.png" width="270px" height="200px">
+  <img src="oak-tecnologia-5.png" width="270px" height="200px">
+  <img src="oak-tecnologia-6.png" width="270px" height="200px">
 </div>
 
 <br><hr>
@@ -95,6 +92,20 @@ $ npm start
 $ npm run dev
 
 # O Server irá inicializar em http://localhost:3333
+```
+
+```bash
+# [POST] Criar produto
+/products
+
+# [GET] Listar produtos
+/products
+
+# [GET] Listar produtos com pesquisa
+/products?name={searchTerm}
+
+# [GET] Listar produto por id
+/products/:id
 ```
 
 #### Inicializando aplicação Front-end
