@@ -94,20 +94,6 @@ $ npm run dev
 # O Server irá inicializar em http://localhost:3333
 ```
 
-```bash
-# [POST] Criar produto
-/products
-
-# [GET] Listar produtos
-/products
-
-# [GET] Listar produtos com pesquisa
-/products?name={searchTerm}
-
-# [GET] Listar produto por id
-/products/:id
-```
-
 #### Inicializando aplicação Front-end
 
 ```bash
@@ -124,6 +110,22 @@ $ npm install
 $ npm run dev
 
 # O Server irá inicializar em http://localhost:5173
+```
+
+## 🔗 Rotas
+
+```bash
+# [POST] Criar produto
+/products
+
+# [GET] Listar produtos
+/products
+
+# [GET] Listar produtos com pesquisa
+/products?name={searchTerm}
+
+# [GET] Listar produto por id
+/products/:id
 ```
 
 &#xa0;
