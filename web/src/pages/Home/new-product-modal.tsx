@@ -20,7 +20,7 @@ export function NewProductModal({
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [price, setPrice] = useState('')
-  const [available, setAvailable] = useState(false)
+  const [available, setAvailable] = useState(true)
 
   async function handleCreateNewProduct(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -113,7 +113,7 @@ export function NewProductModal({
                 Descrição
               </label>
               <textarea
-                className="w-full h-28 p-2 rounded-lg bg-customDark text-white resize-none focus:ring-green-500 focus:ring-2 focus:border-transparent"
+                className="w-full h-28 p-2 rounded-lg bg-customDark text-white resize-none focus:ring-green-500 focus:ring-2 focus:border-transparent overflow-y-auto scrollbar-thin scrollbar-thin-rounded-full scrollbar-thumb-customGreen scrollbar-track-customDarker pr-1"
                 id="description"
                 name="description"
                 onChange={(event) => setDescription(event.target.value)}
