@@ -76,8 +76,11 @@ _**As seguintes bibliotecas e frameworks foram utilizadas neste projeto:**_
 #### Inicializando aplicação Back-end
 
 ```bash
-# Clone este projeto https://github.com/RodrigoLuigi/oak-tecnologia.git
-$ git clone
+
+**Passo 1**
+
+# Clone este projeto
+$ git clone https://github.com/RodrigoLuigi/oak-tecnologia.git
 
 # Acesse o projeto
 $ cd oak-tecnologia/api
@@ -96,9 +99,10 @@ $ npm run dev
 
 #### Inicializando aplicação Front-end
 
-**Após inicialização do back-end**
-
 ```bash
+
+**Passo 2**
+
 # Acesse o projeto
 $ cd oak-tecnologia/web
 
