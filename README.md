@@ -29,28 +29,41 @@
 
 ## <img id="sobre" src="https://imgur.com/VhTBbHg.png" alt="imagem de um notebook" align="center" width="30px"> _**O que desenvolvemos neste Projeto?**_
 
-📌
+📌 Neste projeto, desenvolvemos uma aplicação web completa para gerenciar produtos. O sistema permite o cadastro, listagem, e detalhamento de produtos, além de funcionalidades de pesquisa e filtragem. Com uma interface moderna e responsiva, construída com React e Tailwind CSS, e um backend robusto em Node.js.
 
 ## :gear: Features
 
 :heavy_check_mark: Cadastro de Produto\
 :heavy_check_mark: Listar Produtos\
-:heavy_check_mark: Pesquisar por Produtos\
-:heavy_check_mark: Detalhes do Produto
+:heavy_check_mark: Detalhes do Produto\
+:heavy_check_mark: Pesquisar produtos pelo nome\
 :heavy_check_mark: Filtrar produtos por preço
 
 ## :books: Bibliotecas
 
-_**As seguintes bibliotecas foram utilizadas neste projeto:**_
+_**As seguintes bibliotecas e frameworks foram utilizadas neste projeto:**_
 
-- [ReactJs]()
-- [Tailwind-css]()
-- [Axios]()
-- [Lucide-icons]()
-- [Tailwind-scrollbar]()
-- [Flowbite]()
-- [react-number-format]()
-- [react-toastify]()
+**Frond-end**
+
+- [Vite](https://vitejs.dev/)
+- [ReactJs](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Axios](https://axios-http.com/)
+- [Lucide Icons](https://lucide.dev/)
+- [Tailwind Scrollbar](https://www.npmjs.com/package/tailwind-scrollbar)
+- [Flowbite](https://flowbite.com/)
+- [react-number-format](https://www.npmjs.com/package/react-number-format)
+- [react-toastify](https://fkhadra.github.io/react-toastify/)
+
+**Back-end**
+
+- [NodeJs](https://nodejs.org/)
+- [Express](https://expressjs.com/)
+- [express-async-errors](https://www.npmjs.com/package/express-async-errors)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Cors](https://www.npmjs.com/package/cors)
+- [SQLite](https://www.sqlite.org/index.html)
+- [Knex](https://knexjs.org/)
 
 ## 📝 Requisitos
 
@@ -63,17 +76,14 @@ _**As seguintes bibliotecas foram utilizadas neste projeto:**_
 #### Inicializando aplicação Back-end
 
 ```bash
-# Clone este projeto
+# Clone este projeto https://github.com/RodrigoLuigi/oak-tecnologia.git
 $ git clone
 
 # Acesse o projeto
-$ cd
+$ cd oak-tecnologia/api
 
 # Instale as dependências
 $ npm install
-
-# Inicializando Migrations
-$ npm run migrate
 
 # Inicializando projeto
 $ npm start
@@ -86,12 +96,11 @@ $ npm run dev
 
 #### Inicializando aplicação Front-end
 
-```bash
-# Clone este projeto
-$ git clone
+**Após inicialização do back-end**
 
+```bash
 # Acesse o projeto
-$ cd
+$ cd oak-tecnologia/web
 
 # Instale as dependências
 $ npm install
