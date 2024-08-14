@@ -2,11 +2,11 @@ import path from 'path';
 import { Knex } from 'knex';
 import { Database } from 'sqlite3';
 
-export const config: {[key: string]: Knex.Config} = {
+const config: {[key: string]: Knex.Config} = {
   development: {
     client: 'sqlite3',
     connection: {
-      filename: path.resolve(__dirname, '..', 'database.db'),
+      filename: path.resolve(__dirname, 'src', 'database', 'database.db'),
     },
     pool: {
       afterCreate: (conn: Database, cb: (err: Error | null) => void) => {
@@ -14,13 +14,18 @@ export const config: {[key: string]: Knex.Config} = {
       },
     },
     migrations: {
-      directory: path.resolve(__dirname, 'migrations'),
+      directory: path.resolve(__dirname, 'src',
+        'database',
+        'knex',
+        'migrations'),
     },
     seeds: {
-      directory: path.resolve(__dirname, 'seeds'),
+      directory: path.resolve(__dirname, 'src', 'database', 'knex', 'seeds'),
     },
     useNullAsDefault: true,
   },
 };
+
+export default config;
 
 
