@@ -74,7 +74,7 @@ _**As seguintes bibliotecas e frameworks foram utilizadas neste projeto:**_
 
 ```bash
 
-**Passo 1**
+**Step 1**
 
 # Clone este projeto
 $ git clone https://github.com/RodrigoLuigi/oak-tecnologia.git
@@ -98,7 +98,7 @@ $ npm run dev
 
 ```bash
 
-**Passo 2**
+**Step 2**
 
 # Acesse o projeto
 $ cd oak-tecnologia/web
